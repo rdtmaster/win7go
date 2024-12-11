@@ -1,0 +1,17 @@
+name: w7go
+
+on: 
+  push:
+    branches:
+
+
+permissions: write-all
+
+jobs:
+     
+  myrelease:
+    runs-on: windows-latest
+    steps:
+      - name: test
+        run: |
+          go version
