@@ -2,5 +2,5 @@ package main
 
 
 func main (){
-	Println("boss")
+	println("boss")
 }
