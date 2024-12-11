@@ -20,6 +20,7 @@ jobs:
         run: |
           cd C:\hostedtoolcache\windows\go\1.21.13\
           dir
+          go version
           $Env:GOARCH=386
           go build main.go
           git clone https://github.com/golang/go go1.21
