@@ -18,14 +18,12 @@ jobs:
           go-version: '1.20.14'
       - name: test
         run: |
-          cd C:\hostedtoolcache\windows\go\1.21.13\
-          dir
-          go version
+          go env
           $Env:GOARCH=386
           go build main.go
           git clone https://github.com/golang/go go1.21
-          del ./go1.21/src/run.bat
           cp run.bat ./go1.21/src
+          mkdir gopath
           cd go1.21/src
           git checkout 28ca813a1373ff3c8845b0145ce915cca73ff182
           ./all.bat
