@@ -20,16 +20,24 @@ jobs:
         run: |
           $Env:GOARCH=386
           $env:GOROOT_BOOTSTRAP="C:/hostedtoolcache/windows/go/1.20.14/x64"
-          echo $env:GOROOT_BOOTSTRAP
-          go build main.go
+          $env:GOROOT=$env:GOROOT_BOOTSTRAP
+          & $env:GOROOT/bin/go.exe env -w GOARCH=386
+          & $env:GOROOT/bin/go.exe env -w GOHOSTARCH=386
           git clone https://github.com/golang/go go1.21
           cp run.bat ./go1.21/src
           mkdir gopath
           cd go1.21/src
           git checkout 28ca813a1373ff3c8845b0145ce915cca73ff182
           ./all.bat
+          $compress=@{
+          Path = "./go1.21/"
+          CompressionLevel = "Fastest"
+          DestinationPath = "./go_1.21.zip"
+          }
+          Compress-Archive @compress
+          
       - uses: actions/upload-artifact@v4
         with:
           name: test-build
-          path: main.exe
+          path: go_1.21.zip
         
