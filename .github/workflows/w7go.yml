@@ -19,8 +19,8 @@ jobs:
       - name: test
         run: |
           $Env:GOARCH=386
-          echo $env:GOROOT
-          $env:GOROOT_BOOTSTRAP=$env:GOROOT
+          $env:GOROOT_BOOTSTRAP="C:/hostedtoolcache/windows/go/1.20.14/x64"
+          echo $env:GOROOT_BOOTSTRAP
           go build main.go
           git clone https://github.com/golang/go go1.21
           cp run.bat ./go1.21/src
