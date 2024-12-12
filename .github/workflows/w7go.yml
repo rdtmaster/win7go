@@ -97,6 +97,14 @@ jobs:
           cd ../..
 
           
+      - name: Create release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ steps.bumpver.outputs.new_version }}
+          files: |
+            ./go1.22/
+            ./go1.23/
+      
       - uses: actions/upload-artifact@v4
         with:
           name: go
