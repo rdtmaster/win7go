@@ -27,4 +27,4 @@ In conclusion, this is an emergency mechanism for people using legacy hardware/O
 
 ## License
 
-Use the project wherever you want, if you dare. Again, no guarantees. Please don't use this anywhere it can put human lifes at risk or cause significant damage. Don't claim you're the author.
+Use the project wherever you want, if you dare. Again, no guarantees. Please don't use this anywhere it can put human lives at risk or cause significant damage. Don't claim you're the author.
