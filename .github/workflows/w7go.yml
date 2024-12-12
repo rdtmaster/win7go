@@ -45,11 +45,12 @@ jobs:
           cd go1.22/src
           git checkout 3de6033d0e8022dffee85bd9537f90b1a5ba5e30
           ./all.bat
-          cd ../..
+          cd ../
           $env:GOROOT_BOOTSTRAP=$pwd.path
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
           #build go 1.23t (first round)
+          cd ../
           git clone https://github.com/golang/go go1.23t
           cp run.bat ./go1.23t/src
           cp revert.bat ./go1.23t/src
