@@ -26,7 +26,7 @@ jobs:
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
           #build go1.22-devel
-          git clone https://github.com/golang/go go1.21
+          git clone https://github.com/golang/go go1.22t
           cp run.bat ./go1.22t/src
           cd go1.22t/src
           git checkout a2ff3acb0dbb3d4d3628f359f0e1b091a4f0ee9b
@@ -80,20 +80,7 @@ jobs:
           ./revert.bat
           ./all.bat
           cd ../..
-          
-         
-          $compress=@{
-          Path = "./go1.21/"
-          CompressionLevel = "Fastest"
-          DestinationPath = "./go_1.21.zip"
-          }
-          #Compress-Archive @compress
-          $compress2=@{
-          Path = "./go1.22/"
-          CompressionLevel = "Fastest"
-          DestinationPath = "./go_1.22.zip"
-          }
-          #Compress-Archive @compress2
+
           
       - uses: actions/upload-artifact@v4
         with:
