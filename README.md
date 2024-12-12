@@ -17,7 +17,7 @@ The toolchain/compiler can compile itself and works for my pet projects. Cross-c
 
 ## Where we are
 
-On commit `ad87d4404782d816f7a4497113b6b983b45aa442`. Moving forward doesn't help much, since the number of reverted commits form a snowball effect that prevents merging almost any change or makes it useless. The approach of this repo is not very smart, it would be better to write patches that would actually handle functions unsupported by Win7 instead of simply reverting them, but I lack time and expertise to implement this.
+On commit golang/go@ad87d4404782d816f7a4497113b6b983b45aa442. Moving forward doesn't help much, since the number of reverted commits form a snowball effect that prevents merging almost any change or makes it useless. The approach of this repo is not very smart, it would be better to write patches that would actually handle functions unsupported by Win7 instead of simply reverting them, but I lack time and expertise to implement this. You can see full reversion list [here](reverts.md).
 
 It does not pass tests, but neither does unmodified official go git repo when compiled (I believe), so I removed them from `run.bat` for the better good and to save some time.
 
