@@ -55,6 +55,22 @@ jobs:
           git revert --no-commit 48042aa09c2f878c4faa576948b07fe625c4707a
           #./revert.bat
           ./all.bat
+          cd ../..
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.23t"
+          $env:GOROOT=$env:GOROOT_BOOTSTRAP
+          
+          #build go1.23t2
+          git clone https://github.com/golang/go go1.23t2
+          cp run.bat ./go1.23t2/src
+          cp revert.bat ./go1.23t2/src
+          cd go1.23t2/src
+          git checkout 4742c52e101ecf4aacebe5148a1cb172bdadb1d4
+          ./revert.bat
+          ./all.bat
+          cd ../..
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.23t2"
+          $env:GOROOT=$env:GOROOT_BOOTSTRAP
+          
           
          
           $compress=@{
