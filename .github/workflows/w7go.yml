@@ -16,18 +16,18 @@ jobs:
         with:
           fetch-depth: 0
       - run: git fetch --force --tags
-      - uses: actions-ecosystem/action-get-latest-tag@v1
-        id: get-latest-tag
-      - uses: actions-ecosystem/action-bump-semver@v1
-        id: bump-semver
+      - name: get the version
+        id: curver
+        run: |
+          $v = $(git for-each-ref --sort=-creatordate --count 1 --format="%(refname:short)" "refs/tags/v*")
+          echo "ver=$(echo $v)" >> $env:GITHUB_OUTPUT
+      - name: bump semver
+        uses: actions-ecosystem/action-bump-semver@v1
+        id: bumpver
         with:
-          current_version: ${{ steps.get-latest-tag.outputs.tag }}
-          level: major
-      
-      - uses: actions-ecosystem/action-push-tag@v1
-        with:
-          tag: ${{ steps.bump-semver.outputs.new_version }}
-          message: '${{ steps.bump-semver.outputs.new_version }}: bump'
+          current_version: ${{ steps.curver.outputs.ver }}
+          level: minor
+
       - name: build
         run: |
           #go1.20.14
