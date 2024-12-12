@@ -28,6 +28,7 @@ jobs:
           cd go1.21/src
           git checkout 28ca813a1373ff3c8845b0145ce915cca73ff182
           ./all.bat
+          cd ../..
           dir
           $compress=@{
           Path = "./go1.21/"
