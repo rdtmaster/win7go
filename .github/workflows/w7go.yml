@@ -81,6 +81,6 @@ jobs:
         with:
           name: go
           path: |
-            ./go1.21/
-            ./go1.22/
-            ./go1.23t/
+            ../go1.21/
+            ../go1.22/
+            ../go1.23t/
