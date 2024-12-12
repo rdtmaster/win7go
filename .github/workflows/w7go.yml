@@ -18,37 +18,38 @@ jobs:
           #go1.20.14
           $Env:GOARCH=386
           $Env:CGO_ENABLED=1
+          cp run.bat ./..
+          cp revert.bat ./..
+          cd ..
           $gourl = "https://dl.google.com/go/go1.20.14.windows-386.zip"
           Invoke-WebRequest $gourl -OutFile ./go1.20.zip
           Expand-Archive "go1.20.zip" ./
           Rename-Item -Path "go" -NewName "go1.20.14"
-          
-          #build go1.21-devel
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.20.14"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
-          & $env:GOROOT/bin/go.exe env -w GOARCH=386
+          
+          #build go1.21-devel
           git clone https://github.com/golang/go go1.21
           cp run.bat ./go1.21/src
           cd go1.21/src
           git checkout 28ca813a1373ff3c8845b0145ce915cca73ff182
           ./all.bat
-          cd ../..
+          cd ../
+          $env:GOROOT_BOOTSTRAP=$pwd.path
+          $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
           #build go1.22-devel
-          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.21"
-          $env:GOROOT=$env:GOROOT_BOOTSTRAP
-          & $env:GOROOT/bin/go.exe env -w GOARCH=386
+          cd ../
           git clone https://github.com/golang/go go1.22
           cp run.bat ./go1.22/src
           cd go1.22/src
           git checkout 3de6033d0e8022dffee85bd9537f90b1a5ba5e30
           ./all.bat
-          cd ../..
-          
-          #build go 1.23 (first round)
-          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.22"
+          cd ../
+          $env:GOROOT_BOOTSTRAP=$pwd.path
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
-          & $env:GOROOT/bin/go.exe env -w GOARCH=386
+          
+          #build go 1.23t (first round)
           git clone https://github.com/golang/go go1.23t
           cp run.bat ./go1.23t/src
           cp revert.bat ./go1.23t/src
@@ -57,17 +58,7 @@ jobs:
           ./revert.bat
           ./all.bat
           
-          cd ../..
-          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.23t"
-          $env:GOROOT=$env:GOROOT_BOOTSTRAP
-          #& $env:GOROOT/bin/go.exe env -w GOARCH=386
-          #git clone https://github.com/golang/go go1.23
-          #cp run.bat ./go1.23/src
-          #cp revert.bat ./go1.23/src
-          #cd go1.23/src
-          #git checkout 4742c52e101ecf4aacebe5148a1cb172bdadb1d4
-          #./revert.bat
-          #./all.bat
+         
           
           cd ../..
           $compress=@{
