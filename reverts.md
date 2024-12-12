@@ -1,8 +1,6 @@
 # Reverted commits
 
-mojombo/god@be6a8cc1c1ecfe9489fb51e4869af15a13fc2cd2
-
-- Golang@4742c52e101ecf4aacebe5148a1cb172bdadb1d4
+- 4742c52e101ecf4aacebe5148a1cb172bdadb1d4
 - golang/go@626f6db5889b284478a15071739db62da38231d5
 - golang/go@55e4097cbaf67307eeb981150da774329a03b88d
 - golang/go@ 7b10c49e0563e43292a72ee1a576fa2345164670
