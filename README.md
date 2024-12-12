@@ -21,4 +21,4 @@ On commit `ad87d4404782d816f7a4497113b6b983b45aa442`. Moving forward doesn't hel
 
 It does not pass tests, but neither does unmodified official go git repo when compiled (I believe), so I removed them from `run.bat` for the better good and to save some time.
 
-This is a working go tree, ready to `git clone` and then point `GOROOT` to.
+This produces a working go tree, ready to point `GOROOT` to. The build script is tested only on github CI because it performs some hefty jobs (builds go like 3 times) and running it locally is not very practical, anyways it should work. You can greb a prebuilt version on releases page (release version tags have nothing to do with golang versioning and are created merely to upload the packages). They can be obtained from articles of action runs as well.

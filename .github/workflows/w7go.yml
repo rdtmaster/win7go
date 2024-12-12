@@ -25,17 +25,17 @@ jobs:
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.20.14"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
-          #build go1.21-devel
+          #build go1.22-devel
           git clone https://github.com/golang/go go1.21
-          cp run.bat ./go1.21/src
-          cd go1.21/src
+          cp run.bat ./go1.22t/src
+          cd go1.22t/src
           git checkout a2ff3acb0dbb3d4d3628f359f0e1b091a4f0ee9b
           ./all.bat
           cd ../..
-          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.21"
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.22t"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
-          #build go1.22-devel
+          #build go1.22-devel2
           git clone https://github.com/golang/go go1.22
           cp run.bat ./go1.22/src
           cd go1.22/src
@@ -99,8 +99,5 @@ jobs:
         with:
           name: go
           path: |
-            ./go1.21/
             ./go1.22/
-            ./go1.23t/
-            ./go1.23t2/
             ./go1.23/
