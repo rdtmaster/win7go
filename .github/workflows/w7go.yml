@@ -15,11 +15,15 @@ jobs:
       - uses: actions/checkout@v4
       - name: build
         run: |
+          #go1.20.14
           $Env:GOARCH=386
+          $Env:CGO_ENABLED=1
           $gourl = "https://dl.google.com/go/go1.20.14.windows-386.zip"
           Invoke-WebRequest $gourl -OutFile ./go1.20.zip
           Expand-Archive "go1.20.zip" ./
           Rename-Item -Path "go" -NewName "go1.20.14"
+          
+          #build go1.21-devel
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.20.14"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           & $env:GOROOT/bin/go.exe env -w GOARCH=386
@@ -29,6 +33,8 @@ jobs:
           git checkout 28ca813a1373ff3c8845b0145ce915cca73ff182
           ./all.bat
           cd ../..
+          
+          #build go1.22-devel
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.21"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           & $env:GOROOT/bin/go.exe env -w GOARCH=386
@@ -37,8 +43,9 @@ jobs:
           cd go1.22/src
           git checkout 3de6033d0e8022dffee85bd9537f90b1a5ba5e30
           ./all.bat
-          
           cd ../..
+          
+          #build go 1.23 (first round)
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.22"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           & $env:GOROOT/bin/go.exe env -w GOARCH=386
@@ -68,13 +75,13 @@ jobs:
           CompressionLevel = "Fastest"
           DestinationPath = "./go_1.21.zip"
           }
-          Compress-Archive @compress
+          #Compress-Archive @compress
           $compress2=@{
           Path = "./go1.22/"
           CompressionLevel = "Fastest"
           DestinationPath = "./go_1.22.zip"
           }
-          Compress-Archive @compress2
+          #Compress-Archive @compress2
           
       - uses: actions/upload-artifact@v4
         with:
