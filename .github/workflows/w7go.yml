@@ -56,8 +56,8 @@ jobs:
           cp revert.bat ./go1.23t/src
           cd go1.23t/src
           git checkout 704401ffa06c60e059c9e6e4048045b4ff42530a
-          git revert --no-commit 693def151adff1af707d82d28f55dba81ceb08e1 rem 3581
-          git revert --no-commit 48042aa09c2f878c4faa576948b07fe625c4707a rem 3893
+          git revert --no-commit 693def151adff1af707d82d28f55dba81ceb08e1 
+          git revert --no-commit 48042aa09c2f878c4faa576948b07fe625c4707a
           #./revert.bat
           ./all.bat
           
