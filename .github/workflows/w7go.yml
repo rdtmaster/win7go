@@ -32,7 +32,7 @@ jobs:
           git checkout a2ff3acb0dbb3d4d3628f359f0e1b091a4f0ee9b
           ./all.bat
           cd ../..
-          $env:GOROOT_BOOTSTRAP=$pwd.path
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.21"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
           #build go1.22-devel
@@ -42,7 +42,7 @@ jobs:
           git checkout 3de6033d0e8022dffee85bd9537f90b1a5ba5e30
           ./all.bat
           cd ../..
-          $env:GOROOT_BOOTSTRAP=$pwd.path
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.22"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
           #build go 1.23t (first round)
