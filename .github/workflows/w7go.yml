@@ -53,8 +53,6 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: test-build
-          path: go_1.21.zip
-      - uses: actions/upload-artifact@v4
-        with:
-          name: test-build
-          path: go_1.22.zip
+          path: |
+            ./go1.21/
+            ./go1.22/
