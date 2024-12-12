@@ -71,6 +71,15 @@ jobs:
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.23t2"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           
+          #build go1.23 final
+          git clone https://github.com/golang/go go1.23
+          cp run.bat ./go1.23/src
+          cp revert.bat ./go1.23/src
+          cd go1.23/src
+          git checkout 4742c52e101ecf4aacebe5148a1cb172bdadb1d4
+          ./revert.bat
+          ./all.bat
+          cd ../..
           
          
           $compress=@{
@@ -93,3 +102,5 @@ jobs:
             ./go1.21/
             ./go1.22/
             ./go1.23t/
+            ./go1.23t2/
+            ./go1.23/
