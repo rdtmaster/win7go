@@ -26,7 +26,7 @@ jobs:
         id: bumpver
         with:
           current_version: ${{ steps.curver.outputs.ver }}
-          level: minor
+          level: major
 
       - name: build
         run: |
@@ -95,6 +95,20 @@ jobs:
           ./revert.bat
           ./all.bat
           cd ../..
+          
+          $compress = @{
+          Path = "./go1.22"
+          CompressionLevel = "Optimal"
+          DestinationPath = "./go1.22.zip"
+          }
+          Compress-Archive @compress
+          
+          $compress2 = @{
+          Path = "./go1.23"
+          CompressionLevel = "Optimal"
+          DestinationPath = "./go1.23.zip"
+          }
+          Compress-Archive @compress2
 
           
       - name: push the tag
@@ -108,8 +122,8 @@ jobs:
         with:
           tag_name: ${{ steps.bumpver.outputs.new_version }}
           files: |
-            ./go1.22/
-            ./go1.23/
+            go1.22.zip
+            go1.23.zip
       
       - uses: actions/upload-artifact@v4
         with:
