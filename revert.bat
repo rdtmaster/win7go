@@ -53,7 +53,7 @@ git revert --no-commit 336617186a6c01a1874685d4577042ab007609ea
 git revert --no-commit cf52e709977d331a70df9463cf9e307024b6779f
 git revert --no-commit 1de46564a766f9647b22ebab0f35bccd14291460
 git revert --no-commit d0dc93c8e1a5be4e0a44b7f8ecb0cb1417de50ce
-git revert --no-commit 693def151adff1af707d82d28f55dba81ceb08e1 rem 3581
-git revert --no-commit 48042aa09c2f878c4faa576948b07fe625c4707a rem 3893
+git revert --no-commit 693def151adff1af707d82d28f55dba81ceb08e1
+git revert --no-commit 48042aa09c2f878c4faa576948b07fe625c4707a
 
 
