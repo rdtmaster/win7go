@@ -64,6 +64,9 @@ jobs:
          
           
           cd ../..
+          cp ../go1.21 ./
+          cp ../go1.22 ./
+          cp ../go1.23t ./
           $compress=@{
           Path = "./go1.21/"
           CompressionLevel = "Fastest"
@@ -81,6 +84,6 @@ jobs:
         with:
           name: go
           path: |
-            ../go1.21/
-            ../go1.22/
-            ../go1.23t/
+            ./go1.21/
+            ./go1.22/
+            ./go1.23t/
