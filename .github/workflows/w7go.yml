@@ -13,13 +13,14 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.20.14'
       - name: test
         run: |
           $Env:GOARCH=386
-          $env:GOROOT_BOOTSTRAP="C:/hostedtoolcache/windows/go/1.20.14/x64"
+          $gourl = "https://dl.google.com/go/go1.20.14.windows-386.zip"
+          Invoke-WebRequest $gourl -OutFile ./go1.20.zip
+          Expand-Archive "go1.20.zip" ./
+          Rename-Item -Path "go" -NewName "go1.20.14"
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"go1.20.14"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           & $env:GOROOT/bin/go.exe env -w GOARCH=386
           git clone https://github.com/golang/go go1.21
