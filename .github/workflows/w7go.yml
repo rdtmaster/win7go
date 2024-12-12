@@ -13,7 +13,7 @@ jobs:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v4
-      - name: test
+      - name: build
         run: |
           $Env:GOARCH=386
           $gourl = "https://dl.google.com/go/go1.20.14.windows-386.zip"
@@ -37,6 +37,19 @@ jobs:
           cd go1.22/src
           git checkout 3de6033d0e8022dffee85bd9537f90b1a5ba5e30
           ./all.bat
+          
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.22"
+          $env:GOROOT=$env:GOROOT_BOOTSTRAP
+          & $env:GOROOT/bin/go.exe env -w GOARCH=386
+          git clone https://github.com/golang/go go1.23
+          cp run.bat ./go1.23/src
+          cp revert.bat ./go1.23/src
+          cd go1.23/src
+          git checkout 4742c52e101ecf4aacebe5148a1cb172bdadb1d4
+          ./revert.bat
+          ./all.bat
+          
+          
           cd ../..
           $compress=@{
           Path = "./go1.21/"
@@ -49,10 +62,18 @@ jobs:
           CompressionLevel = "Fastest"
           DestinationPath = "./go_1.22.zip"
           }
+          Compress-Archive @compress2
+          
+          $compress3=@{
+          Path = "./go1.23/"
+          CompressionLevel = "Fastest"
+          DestinationPath = "./go_1.23.zip"
+          }
+          Compress-Archive @compress3
           
       - uses: actions/upload-artifact@v4
         with:
-          name: test-build
+          name: go
           path: |
             ./go1.21/
             ./go1.22/
