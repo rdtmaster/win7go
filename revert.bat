@@ -55,4 +55,3 @@ git revert --no-commit 1de46564a766f9647b22ebab0f35bccd14291460
 git revert --no-commit d0dc93c8e1a5be4e0a44b7f8ecb0cb1417de50ce
 git revert --no-commit 48042aa09c2f878c4faa576948b07fe625c4707a
 git revert --no-commit 693def151adff1af707d82d28f55dba81ceb08e1
-git commit -m "done"
