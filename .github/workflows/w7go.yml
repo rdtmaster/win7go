@@ -38,13 +38,14 @@ jobs:
           git checkout 3de6033d0e8022dffee85bd9537f90b1a5ba5e30
           ./all.bat
           
+          cd ../..
           $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.22"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           & $env:GOROOT/bin/go.exe env -w GOARCH=386
-          git clone https://github.com/golang/go go1.23
-          cp run.bat ./go1.23/src
-          cp revert.bat ./go1.23/src
-          cd go1.23/src
+          git clone https://github.com/golang/go go1.23t
+          cp run.bat ./go1.23t/src
+          cp revert.bat ./go1.23t/src
+          cd go1.23t/src
           git checkout 4742c52e101ecf4aacebe5148a1cb172bdadb1d4
           ./revert.bat
           ./all.bat
@@ -64,16 +65,10 @@ jobs:
           }
           Compress-Archive @compress2
           
-          $compress3=@{
-          Path = "./go1.23/"
-          CompressionLevel = "Fastest"
-          DestinationPath = "./go_1.23.zip"
-          }
-          Compress-Archive @compress3
-          
       - uses: actions/upload-artifact@v4
         with:
           name: go
           path: |
             ./go1.21/
             ./go1.22/
+            ./go1.23t/
