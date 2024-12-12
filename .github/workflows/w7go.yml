@@ -20,7 +20,7 @@ jobs:
           Invoke-WebRequest $gourl -OutFile ./go1.20.zip
           Expand-Archive "go1.20.zip" ./
           Rename-Item -Path "go" -NewName "go1.20.14"
-          $env:GOROOT_BOOTSTRAP=$pwd.path+"go1.20.14"
+          $env:GOROOT_BOOTSTRAP=$pwd.path+"/go1.20.14"
           $env:GOROOT=$env:GOROOT_BOOTSTRAP
           & $env:GOROOT/bin/go.exe env -w GOARCH=386
           git clone https://github.com/golang/go go1.21
