@@ -97,6 +97,12 @@ jobs:
           cd ../..
 
           
+      - name: push the tag
+        env: 
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git tag ${{ steps.bumpver.outputs.new_version }}
+          git push --tags
       - name: Create release
         uses: softprops/action-gh-release@v1
         with:
